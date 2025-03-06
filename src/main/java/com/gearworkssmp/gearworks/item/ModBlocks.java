@@ -13,10 +13,12 @@ import com.gearworkssmp.gearworks.blocks.MilkChocolate;
 
 import com.gearworkssmp.gearworks.blocks.MostEntertainingTrophy;
 
+import com.gearworkssmp.gearworks.blocks.SwoltersLargeDumbbellBlock;
 import com.gearworkssmp.gearworks.blocks.TechnicalMasteryTrophy;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
@@ -32,6 +34,7 @@ public class ModBlocks {
 	public static final Block ARTISTIC_EXCELLENCE_TROPHY_BLOCK = registerBlock("artistic_excellence_trophy", new ArtisticExcellenceTrophy());
 	public static final Block MOST_ENTERTAINING_TROPHY_BLOCK = registerBlock("most_entertaining_trophy", new MostEntertainingTrophy());
 	public static final Block TECHNICAL_MASTERY_TROPHY_BLOCK = registerBlock("technical_mastery_trophy", new TechnicalMasteryTrophy());
+	public static final Block SWOLTERS_LARGE_DUMBBELL_BLOCK = registerBlock("swolters_large_dumbbell", new SwoltersLargeDumbbellBlock(FabricBlockSettings.create().nonOpaque().strength(2.0F, 2.0F).sounds(BlockSoundGroup.METAL)));
 
 	private static Block registerBlock(String name, Block block) {
 		return Registry.register(Registries.BLOCK, new Identifier(Gearworks.ID, name), block);

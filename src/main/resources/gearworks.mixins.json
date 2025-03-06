@@ -4,7 +4,9 @@
   "package": "com.gearworkssmp.gearworks.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "ServerPlayerMixin"
+    "ServerPlayerMixin",
+    "StructureStartMixin",
+    "ValveHandleBlockMixin"
   ],
   "client": [
     "MinecraftMixin"

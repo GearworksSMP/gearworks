@@ -6,6 +6,7 @@ import com.gearworkssmp.gearworks.items.BetaHat;
 import com.gearworkssmp.gearworks.items.BlueRabbitVisorHat;
 import com.gearworkssmp.gearworks.items.CandyCane;
 import com.gearworkssmp.gearworks.items.CogCupcake;
+import com.gearworkssmp.gearworks.items.CorruptedExplorerHat;
 import com.gearworkssmp.gearworks.items.DonutHat;
 import com.gearworkssmp.gearworks.items.EchoingCore;
 import com.gearworkssmp.gearworks.items.Ectoplasm;
@@ -13,6 +14,7 @@ import com.gearworkssmp.gearworks.items.EctoplasmTransitional;
 import com.gearworkssmp.gearworks.items.Eggnog;
 import com.gearworkssmp.gearworks.items.EmeraldTopHat;
 import com.gearworkssmp.gearworks.items.EnderFragment;
+import com.gearworkssmp.gearworks.items.ExplorerHat;
 import com.gearworkssmp.gearworks.items.FrozenFruitPopsicle;
 import com.gearworkssmp.gearworks.items.Fruitcake;
 import com.gearworkssmp.gearworks.items.GingerbreadCog;
@@ -20,6 +22,7 @@ import com.gearworkssmp.gearworks.items.HolidayHam;
 import com.gearworkssmp.gearworks.items.IncompleteCogCupcake;
 import com.gearworkssmp.gearworks.items.InfusedStew;
 import com.gearworkssmp.gearworks.items.JackOLantern;
+import com.gearworkssmp.gearworks.items.LaserSword;
 import com.gearworkssmp.gearworks.items.MegaMask;
 import com.gearworkssmp.gearworks.items.MulledWine;
 import com.gearworkssmp.gearworks.items.NoBetaHat;
@@ -27,12 +30,15 @@ import com.gearworkssmp.gearworks.items.RoastedChestnuts;
 import com.gearworkssmp.gearworks.items.ShadowEssence;
 import com.gearworkssmp.gearworks.items.SnowberryPie;
 import com.gearworkssmp.gearworks.items.SteampunkSantaHat;
+import com.gearworkssmp.gearworks.items.SwoltersLargeDumbbellBlockItem;
 import com.gearworkssmp.gearworks.items.TrickOrTreatCandy;
 
 import com.gearworkssmp.gearworks.items.WinterStew;
 import com.gearworkssmp.gearworks.items.WitchHat;
 
 import com.gearworkssmp.gearworks.items.WitchRobes;
+
+import com.gearworkssmp.gearworks.items.materials.LaserSwordMaterial;
 
 import dev.emi.trinkets.api.client.TrinketRenderer;
 import dev.emi.trinkets.api.client.TrinketRendererRegistry;
@@ -91,6 +97,10 @@ public class ModItems {
 	public static final Item TECHNICAL_MASTERY_TROPHY_ITEM = registerItem("technical_mastery_trophy", new BlockItem(TECHNICAL_MASTERY_TROPHY_BLOCK, new Item.Settings()));
 	public static final Item MOST_ENTERTAINING_TROPHY_ITEM = registerItem("most_entertaining_trophy", new BlockItem(MOST_ENTERTAINING_TROPHY_BLOCK, new Item.Settings()));
 	public static final Item ARTISTIC_EXCELLENCE_TROPHY_ITEM = registerItem("artistic_excellence_trophy", new BlockItem(ARTISTIC_EXCELLENCE_TROPHY_BLOCK, new Item.Settings()));
+	public static final Item EXPLORER_HAT = registerItem("explorer_hat", new ExplorerHat(new FabricItemSettings()));
+	public static final Item CORRUPT_EXPLORER_HAT = registerItem("corrupt_explorer_hat", new CorruptedExplorerHat(new FabricItemSettings()));
+	public static final Item SWOLTERS_LARGE_DUMBBELL = registerItem("swolters_large_dumbbell", new SwoltersLargeDumbbellBlockItem(SWOLTERS_LARGE_DUMBBELL_BLOCK, new Item.Settings()));
+	public static final Item LASERSWORD = registerItem("lasersword", new LaserSword(new LaserSwordMaterial(), -5, -1.0F, new FabricItemSettings()));
 
 	private static void addItemsToCombatItemGroup(FabricItemGroupEntries group) {
 		group.add(BETA_HAT);
@@ -104,6 +114,10 @@ public class ModItems {
 		group.add(BLUE_RABBIT_VISOR_HAT);
 		group.add(EMERALD_TOP_HAT);
 		group.add(STEAMPUNK_SANTA_HAT);
+		group.add(EXPLORER_HAT);
+		group.add(CORRUPT_EXPLORER_HAT);
+		group.add(SWOLTERS_LARGE_DUMBBELL);
+		group.add(LASERSWORD);
 	}
 
 	private static void addItemsToFoodItemGroup(FabricItemGroupEntries group) {
@@ -139,7 +153,7 @@ public class ModItems {
 
 	private static Item registerItem(String name, Item item) {
 		if (item instanceof TrinketRenderer) {
-			Gearworks.LOGGER.info("Registering renderer " + Gearworks.ID+":"+name);
+			Gearworks.LOGGER.info("Registering renderer " + Gearworks.ID + ":" + name);
 			TrinketRendererRegistry.registerRenderer(item, (TrinketRenderer) item);
 		}
 		return Registry.register(Registries.ITEM, new Identifier(Gearworks.ID, name), item);

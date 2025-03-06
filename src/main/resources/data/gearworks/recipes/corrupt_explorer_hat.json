@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "BXB",
+    "BYB",
+    "BBB"
+  ],
+  "key": {
+    "Y": {
+      "item": "gearworks:explorer_hat"
+    },
+    "B": {
+      "item": "minecraft:echo_shard"
+    },
+    "X": {
+      "item": "gearworks:echoing_core"
+    }
+  },
+  "result": {
+    "item": "gearworks:corrupt_explorer_hat"
+  }
+}

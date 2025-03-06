@@ -126,6 +126,18 @@ public class ModLootTableModifiers {
 					tableBuilder.pool(poolBuilder.build());
 				}
 			}
+			if (id.toString().contains("archaeology") && !id.toString().contains("common") && !id.toString().contains("generic")) {
+				float chance = 0.2F;
+				if (id.toString().contains("rare")) {
+					chance = 1.0F;
+				}
+				LootPool.Builder poolBuilder = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1))
+						.conditionally(RandomChanceLootCondition.builder(chance))
+						.with(ItemEntry.builder(ModItems.EXPLORER_HAT))
+						.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 1.0F)).build());
+				tableBuilder.pool(poolBuilder.build());
+			}
 
 		}));
 	}

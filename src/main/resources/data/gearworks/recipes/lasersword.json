@@ -1,0 +1,25 @@
+{
+  "type": "create:mechanical_crafting",
+  "acceptMirrored": true,
+  "key": {
+    "A": {
+      "item": "minecraft:end_rod"
+    },
+    "P": {
+      "item": "numismatics:crown"
+    },
+    "S": {
+      "item": "create:brass_ingot"
+    }
+  },
+  "pattern": [
+    "A",
+    "A",
+    "P",
+    "S"
+  ],
+  "result": {
+    "count": 1,
+    "item": "gearworks:lasersword"
+  }
+}

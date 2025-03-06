@@ -62,5 +62,12 @@
   "block.gearworks.dark_chocolate_block": "Dark Chocolate Bricks",
   "block.gearworks.artistic_excellence_trophy": "Artistic Excellence Trophy",
   "block.gearworks.technical_mastery_trophy": "Technical Mastery Trophy",
-  "block.gearworks.most_entertaining_trophy": "Most Entertaining Trophy"
+  "block.gearworks.most_entertaining_trophy": "Most Entertaining Trophy",
+  "item.gearworks.explorer_hat.tooltip": "Keeps you safe while digging!",
+  "item.gearworks.corrupted_explorer_hat.tooltip": "Only for the bravest of explorers",
+  "item.gearworks.explorer_hat": "Explorer Hat",
+  "item.gearworks.corrupt_explorer_hat": "Explorer Hat (Corrupted)",
+  "item.gearworks.swolters_large_dumbbell": "Swolter's Large Dumbbell",
+  "block.gearworks.swolters_large_dumbbell": "Swolter's Large Dumbbell",
+  "item.gearworks.lasersword": "Laser Sword"
 }

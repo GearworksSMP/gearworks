@@ -1,0 +1,4 @@
+{
+  "parent": "block/empty",
+  "particle": "gearworks:item/cog_weight"
+}

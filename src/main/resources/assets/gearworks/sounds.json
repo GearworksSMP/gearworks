@@ -1,0 +1,50 @@
+{
+  "lasersword_hit_1": {
+    "sounds": [
+      {
+        "name": "gearworks:lasersword_hit_1",
+        "stream": false
+      }
+    ]
+  },
+  "lasersword_hit_2": {
+    "sounds": [
+      {
+        "name": "gearworks:lasersword_hit_2",
+        "stream": false
+      }
+    ]
+  },
+  "lasersword_hit_3": {
+    "sounds": [
+      {
+        "name": "gearworks:lasersword_hit_3",
+        "stream": false
+      }
+    ]
+  },
+  "lasersword_miss_1": {
+    "sounds": [
+      {
+        "name": "gearworks:lasersword_miss_1",
+        "stream": false
+      }
+    ]
+  },
+  "lasersword_miss_2": {
+    "sounds": [
+      {
+        "name": "gearworks:lasersword_miss_2",
+        "stream": false
+      }
+    ]
+  },
+  "lasersword_miss_3": {
+    "sounds": [
+      {
+        "name": "gearworks:lasersword_miss_3",
+        "stream": false
+      }
+    ]
+  }
+}

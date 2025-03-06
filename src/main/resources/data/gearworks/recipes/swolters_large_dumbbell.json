@@ -1,0 +1,28 @@
+{
+  "type": "create:mechanical_crafting",
+  "acceptMirrored": false,
+  "key": {
+    "A": {
+      "item": "create:brass_block"
+    },
+    "P": {
+      "item": "numismatics:sun"
+    },
+    "S": {
+      "item": "create:shaft"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "APA",
+    "AAA",
+    " S ",
+    "AAA",
+    "APA",
+    "AAA"
+  ],
+  "result": {
+    "count": 1,
+    "item": "gearworks:swolters_large_dumbbell"
+  }
+}

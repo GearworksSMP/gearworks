@@ -9,6 +9,8 @@ import java.util.UUID;
 
 import com.gearworkssmp.gearworks.events.ScheduledSpawn;
 
+import com.gearworkssmp.gearworks.item.ModBlockEntities;
+
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
@@ -25,9 +27,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
 
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 
@@ -89,6 +94,18 @@ public class Gearworks implements ModInitializer {
 			"ViperSoup",
 			"prancingpachy"
 	};
+	public static final SoundEvent LASERSWORD_MISS_1 = SoundEvent.of(new Identifier(ID, "lasersword_miss_1"));
+	public static final SoundEvent LASERSWORD_MISS_2 = SoundEvent.of(new Identifier(ID, "lasersword_miss_2"));
+	public static final SoundEvent LASERSWORD_MISS_3 = SoundEvent.of(new Identifier(ID, "lasersword_miss_3"));
+	public static final SoundEvent[] LASERSWORD_MISS_SOUNDS = new SoundEvent[]{
+			LASERSWORD_MISS_1, LASERSWORD_MISS_2, LASERSWORD_MISS_3
+	};
+
+	public static final SoundEvent LASERSWORD_HIT_1 = SoundEvent.of(new Identifier(ID, "lasersword_hit_1"));
+	public static final SoundEvent LASERSWORD_HIT_2 = SoundEvent.of(new Identifier(ID, "lasersword_hit_2"));
+	public static final SoundEvent[] LASERSWORD_HIT_SOUNDS = new SoundEvent[]{
+			LASERSWORD_HIT_1, LASERSWORD_HIT_2
+	};
 
 	@Override
 	public void onInitialize() {
@@ -98,9 +115,16 @@ public class Gearworks implements ModInitializer {
 				() -> () -> "{} is accessing Porting Lib from the server!"
 		), NAME);
 		ModItems.registerModItems();
+		ModBlockEntities.registerBlockEntities();
 		ModLootTableModifiers.modifyLootTables();
 		ModMobSpawnModifier.modifyMobSpawns();
 		registerEvents();
+
+		Registry.register(Registries.SOUND_EVENT, new Identifier(ID, "lasersword_miss_1"), LASERSWORD_MISS_1);
+		Registry.register(Registries.SOUND_EVENT, new Identifier(ID, "lasersword_miss_2"), LASERSWORD_MISS_2);
+		Registry.register(Registries.SOUND_EVENT, new Identifier(ID, "lasersword_miss_3"), LASERSWORD_MISS_3);
+		Registry.register(Registries.SOUND_EVENT, new Identifier(ID, "lasersword_hit_1"), LASERSWORD_HIT_1);
+		Registry.register(Registries.SOUND_EVENT, new Identifier(ID, "lasersword_hit_2"), LASERSWORD_HIT_2);
 
 		ServerTickEvents.END_SERVER_TICK.register(server -> {
 			long currentTime = server.getOverworld().getTime();
