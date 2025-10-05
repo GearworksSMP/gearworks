@@ -1,5 +1,6 @@
 package com.gearworkssmp.gearworks.item;
 
+import java.util.Random;
 import java.util.random.RandomGenerator;
 
 import com.gearworkssmp.gearworks.Gearworks;
@@ -14,7 +15,13 @@ import net.minecraft.world.World;
 
 public class ModMobSpawnModifier {
 	public static void modifyMobSpawns() {
-		if (Gearworks.isCloseToHalloween() && RandomGenerator.getDefault().nextInt(2) == 1) {
+		boolean coinFlip;
+		try {
+			coinFlip = RandomGenerator.getDefault().nextInt(2) == 1;
+		} catch (Throwable t) { // Fallback for environments where RandomGenerator default isn't available
+			coinFlip = new Random().nextInt(2) == 1;
+		}
+		if (Gearworks.isCloseToHalloween() && coinFlip) {
 			LivingEntityEvents.ON_JOIN_WORLD.register((Entity entity, World world, boolean loadedFromDisk) -> {
 				if (entity instanceof ZombieEntity) {
 					entity.equipStack(EquipmentSlot.HEAD, ModItems.JACK_O_LANTERN.getDefaultStack());

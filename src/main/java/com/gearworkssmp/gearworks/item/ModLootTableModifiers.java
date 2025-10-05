@@ -8,7 +8,6 @@ import net.minecraft.loot.condition.RandomChanceLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
-import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.util.Identifier;
 
 public class ModLootTableModifiers {
@@ -32,7 +31,7 @@ public class ModLootTableModifiers {
 						.rolls(ConstantLootNumberProvider.create(1))
 						.conditionally(RandomChanceLootCondition.builder(1F))
 						.with(ItemEntry.builder(ModItems.ECHOING_CORE))
-						.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 1.0F)).build());
+						.apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)).build());
 				tableBuilder.pool(poolBuilder.build());
 			}
 			if (ENDERMAN_ID.equals(id)) {
@@ -40,7 +39,7 @@ public class ModLootTableModifiers {
 						.rolls(ConstantLootNumberProvider.create(1))
 						.conditionally(RandomChanceLootCondition.builder(0.8F * halloweenModifier()))
 						.with(ItemEntry.builder(ModItems.ENDER_FRAGMENT))
-						.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 1.0F)).build());
+						.apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)).build());
 				tableBuilder.pool(poolBuilder.build());
 			}
 			if (GHAST_ID.equals(id)) {
@@ -48,7 +47,7 @@ public class ModLootTableModifiers {
 						.rolls(ConstantLootNumberProvider.create(1))
 						.conditionally(RandomChanceLootCondition.builder(halloweenModifier()))
 						.with(ItemEntry.builder(ModItems.ECTOPLASM))
-						.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 1.0F)).build());
+						.apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)).build());
 				tableBuilder.pool(poolBuilder.build());
 			}
 			if (PHANTOM_ID.equals(id)) {
@@ -56,7 +55,7 @@ public class ModLootTableModifiers {
 						.rolls(ConstantLootNumberProvider.create(1))
 						.conditionally(RandomChanceLootCondition.builder(0.5F * halloweenModifier()))
 						.with(ItemEntry.builder(ModItems.ECTOPLASM))
-						.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 1.0F)).build());
+						.apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)).build());
 				tableBuilder.pool(poolBuilder.build());
 			}
 			if (ZOGLIN_ID.equals(id)) {
@@ -64,7 +63,7 @@ public class ModLootTableModifiers {
 						.rolls(ConstantLootNumberProvider.create(1))
 						.conditionally(RandomChanceLootCondition.builder(halloweenModifier()))
 						.with(ItemEntry.builder(ModItems.SHADOW_ESSENCE))
-						.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 1.0F)).build());
+						.apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)).build());
 				tableBuilder.pool(poolBuilder.build());
 			}
 			if (ZOMBIE_VILLAGER_ID.equals(id)) {
@@ -72,7 +71,7 @@ public class ModLootTableModifiers {
 						.rolls(ConstantLootNumberProvider.create(1))
 						.conditionally(RandomChanceLootCondition.builder(halloweenModifier()))
 						.with(ItemEntry.builder(ModItems.SHADOW_ESSENCE))
-						.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 1.0F)).build());
+						.apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)).build());
 				tableBuilder.pool(poolBuilder.build());
 			}
 			if (ENDERMITE_ID.equals(id)) {
@@ -81,7 +80,7 @@ public class ModLootTableModifiers {
 						.conditionally(RandomChanceLootCondition.builder(0.5F))
 						.with(ItemEntry.builder(ModItems.SHADOW_ESSENCE))
 						.with(ItemEntry.builder(ModItems.ECTOPLASM))
-						.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 1.0F)).build());
+						.apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)).build());
 				tableBuilder.pool(poolBuilder.build());
 			}
 			if (STRAY_ID.equals(id)) {
@@ -89,7 +88,7 @@ public class ModLootTableModifiers {
 						.rolls(ConstantLootNumberProvider.create(1))
 						.conditionally(RandomChanceLootCondition.builder(0.8F * halloweenModifier()))
 						.with(ItemEntry.builder(ModItems.ECTOPLASM))
-						.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 1.0F)).build());
+						.apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)).build());
 				tableBuilder.pool(poolBuilder.build());
 			}
 			if (TRADER_LLAMA.equals(id)) {
@@ -97,7 +96,7 @@ public class ModLootTableModifiers {
 						.rolls(ConstantLootNumberProvider.create(1))
 						.conditionally(RandomChanceLootCondition.builder(0.8F * halloweenModifier()))
 						.with(ItemEntry.builder(ModItems.ECTOPLASM))
-						.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 1.0F)).build());
+						.apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)).build());
 				tableBuilder.pool(poolBuilder.build());
 			}
 			if (Gearworks.isCloseToHalloween()) {
@@ -106,7 +105,7 @@ public class ModLootTableModifiers {
 							.rolls(ConstantLootNumberProvider.create(1))
 							.conditionally(RandomChanceLootCondition.builder(0.5F))
 							.with(ItemEntry.builder(ModItems.JACK_O_LANTERN))
-							.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 1.0F)).build());
+							.apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)).build());
 					tableBuilder.pool(poolBuilder.build());
 				}
 				if (SKELETON.equals(id)) {
@@ -114,7 +113,7 @@ public class ModLootTableModifiers {
 							.rolls(ConstantLootNumberProvider.create(1))
 							.conditionally(RandomChanceLootCondition.builder(0.5F))
 							.with(ItemEntry.builder(ModItems.JACK_O_LANTERN))
-							.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 1.0F)).build());
+							.apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)).build());
 					tableBuilder.pool(poolBuilder.build());
 				}
 				if (CREEPER.equals(id)) {
@@ -122,7 +121,7 @@ public class ModLootTableModifiers {
 							.rolls(ConstantLootNumberProvider.create(1))
 							.conditionally(RandomChanceLootCondition.builder(0.5F))
 							.with(ItemEntry.builder(ModItems.JACK_O_LANTERN))
-							.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 1.0F)).build());
+							.apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)).build());
 					tableBuilder.pool(poolBuilder.build());
 				}
 			}
@@ -135,7 +134,7 @@ public class ModLootTableModifiers {
 						.rolls(ConstantLootNumberProvider.create(1))
 						.conditionally(RandomChanceLootCondition.builder(chance))
 						.with(ItemEntry.builder(ModItems.EXPLORER_HAT))
-						.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 1.0F)).build());
+						.apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)).build());
 				tableBuilder.pool(poolBuilder.build());
 			}
 
