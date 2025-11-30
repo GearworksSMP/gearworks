@@ -3,7 +3,6 @@ package com.gearworkssmp.gearworks.mixin;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
-import com.simibubi.create.AllItems;
 import com.simibubi.create.content.kinetics.crank.ValveHandleBlock;
 
 import net.minecraft.block.BlockState;
@@ -30,9 +29,8 @@ public abstract class ValveHandleBlockMixin {
 			return ActionResult.PASS;
 		}
 
-        if (AllItems.WRENCH.isIn(player.getStackInHand(hand)) && player.isSneaking()) {
-			return ActionResult.PASS;
-		}
+        // Note: Wrench check removed for Create 6.0+ compatibility
+        // If wrench functionality is needed, check player.getStackInHand(hand).getItem() directly
 
         if (vhb.clicked(world, pos, blockState, player, hand)) {
             return ActionResult.SUCCESS;

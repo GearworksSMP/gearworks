@@ -12,6 +12,9 @@ import com.gearworkssmp.gearworks.events.ScheduledSpawn;
 import com.gearworkssmp.gearworks.item.ModBlockEntities;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import com.gearworkssmp.gearworks.logging.BlockChangeAggregator;
+import com.gearworkssmp.gearworks.logging.BlockChangeEvents;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -47,7 +50,6 @@ import com.gearworkssmp.gearworks.item.ModLootTableModifiers;
 import com.gearworkssmp.gearworks.item.ModMobSpawnModifier;
 import com.simibubi.create.Create;
 
-import io.github.fabricators_of_create.porting_lib.util.EnvExecutor;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
@@ -109,16 +111,24 @@ public class Gearworks implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		LOGGER.info("Create addon mod [{}] is loading alongside Create [{}]!", NAME, Create.VERSION);
-		LOGGER.info(EnvExecutor.unsafeRunForDist(
-				() -> () -> "{} is accessing Porting Lib from the client!",
-				() -> () -> "{} is accessing Porting Lib from the server!"
-		), NAME);
+		LOGGER.info("Create addon mod [{}] is loading!", NAME);
 		ModItems.registerModItems();
 		ModBlockEntities.registerBlockEntities();
 		ModLootTableModifiers.modifyLootTables();
 		ModMobSpawnModifier.modifyMobSpawns();
 		registerEvents();
+
+		// Initialize DB and event logging
+		try {
+			BlockChangeAggregator.init();
+			BlockChangeEvents.register();
+		} catch (Exception e) {
+			LOGGER.error("Failed to initialize block logging", e);
+		}
+		// Flush on server stop to avoid losing events
+		ServerLifecycleEvents.SERVER_STOPPING.register(server -> {
+			try { BlockChangeAggregator.flushAll(); } catch (Exception e) { LOGGER.error("Block log final flush failed", e); }
+		});
 
 		Registry.register(Registries.SOUND_EVENT, new Identifier(ID, "lasersword_miss_1"), LASERSWORD_MISS_1);
 		Registry.register(Registries.SOUND_EVENT, new Identifier(ID, "lasersword_miss_2"), LASERSWORD_MISS_2);
@@ -127,6 +137,8 @@ public class Gearworks implements ModInitializer {
 		Registry.register(Registries.SOUND_EVENT, new Identifier(ID, "lasersword_hit_2"), LASERSWORD_HIT_2);
 
 		ServerTickEvents.END_SERVER_TICK.register(server -> {
+			// Periodic flush of aggregated block events
+			try { BlockChangeAggregator.flushIfDue(); } catch (Exception e) { LOGGER.error("Block log periodic flush failed", e); }
 			long currentTime = server.getOverworld().getTime();
 			// Get current game time from the overworld (or any stable dimension)
 

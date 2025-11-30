@@ -26,15 +26,15 @@ public class LaserSword extends SwordItem {
 	}
 
 	@Override
-	public boolean onLeftClickEntity(ItemStack stack, PlayerEntity user, Entity entity) {
-		World world = user.getWorld();
-		// Ensure this is only played on the client.
-		if (world.isClient) {
+	public boolean postHit(ItemStack stack, net.minecraft.entity.LivingEntity target, net.minecraft.entity.LivingEntity attacker) {
+		// Play laser sword hit sound when hitting an entity
+		if (attacker.getWorld().isClient) {
+			World world = attacker.getWorld();
 			int index = world.random.nextInt(Gearworks.LASERSWORD_HIT_SOUNDS.length);
-			world.playSound(user.getX(), user.getY(), user.getZ(),
+			world.playSound(attacker.getX(), attacker.getY(), attacker.getZ(),
 					Gearworks.LASERSWORD_HIT_SOUNDS[index],
 					SoundCategory.PLAYERS, 1.0F, 1.0F, false);
 		}
-		return super.onLeftClickEntity(stack, user, entity);
+		return super.postHit(stack, target, attacker);
 	}
 }

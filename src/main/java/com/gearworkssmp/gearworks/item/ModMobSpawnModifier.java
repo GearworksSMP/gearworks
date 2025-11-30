@@ -5,13 +5,13 @@ import java.util.random.RandomGenerator;
 
 import com.gearworkssmp.gearworks.Gearworks;
 
-import io.github.fabricators_of_create.porting_lib.entity.events.LivingEntityEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.entity.mob.CreeperEntity;
 import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.entity.mob.ZombieEntity;
-import net.minecraft.world.World;
 
 public class ModMobSpawnModifier {
 	public static void modifyMobSpawns() {
@@ -22,7 +22,7 @@ public class ModMobSpawnModifier {
 			coinFlip = new Random().nextInt(2) == 1;
 		}
 		if (Gearworks.isCloseToHalloween() && coinFlip) {
-			LivingEntityEvents.ON_JOIN_WORLD.register((Entity entity, World world, boolean loadedFromDisk) -> {
+			ServerEntityEvents.ENTITY_LOAD.register((Entity entity, ServerWorld world) -> {
 				if (entity instanceof ZombieEntity) {
 					entity.equipStack(EquipmentSlot.HEAD, ModItems.JACK_O_LANTERN.getDefaultStack());
 				}
@@ -32,7 +32,6 @@ public class ModMobSpawnModifier {
 				if (entity instanceof CreeperEntity) {
 					entity.equipStack(EquipmentSlot.HEAD, ModItems.JACK_O_LANTERN.getDefaultStack());
 				}
-				return true;
 			});
 		}
 	}
